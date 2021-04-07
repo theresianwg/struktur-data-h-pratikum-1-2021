@@ -99,8 +99,15 @@ Pertama, di soal ini menggunakan stack dengan menginisialisasi ``` Stack myStack
 ## Visualisasi Solusi
 ![visual nadut cayo](https://user-images.githubusercontent.com/81666422/113579661-d0d27100-964e-11eb-8ac8-aeaa064f1474.jpeg)
 
+# Garasi Mobil Saha 
+## Verdict 
+![verdict garasi mobil saha](https://user-images.githubusercontent.com/81666422/113583265-a2a36000-9653-11eb-8ff1-5ef950fd90c2.jpeg)
 
+## Penjelasan Soal
+Di soal garasi mobil saha diminta untuk memastikan apakah garasi saha dapat menampung semua mobil dan mobil pertama apakah bisa keluar.
 
+## Penjelasan Solusi
+Pada input pertama diminta untuk jumlah mobil dan kapasitas garasi, lalu untuk inputan kedua adalah jam masuk dan keluarnya mobil. Sesuai syarat mobil tidak bisa keluar dan masuk pada jam yang sama. Pertama membuat fungsi counter untuk menghitung jam keluar masuk mobil. Contoh mobil pertama masuk jam 3 dan keluar jam 8 maka yang tersimpan di counter adalah 3 4 5 6 7. Setelah data masuk dilanjutkan pada fungsi maixcounter, fungsi tersebut digunakan untuk menghitung data waktu yang masuk dengan kapasitas garasi. Mobil bisa masuk jika jam masuk mobil > jam masuk mobil sebelumnya, jam keluar mobil < jam keluar mobil sebelumnya atau jam masuk mobil < jam keluar mobil sebelumnya.
 
 
 
