@@ -101,13 +101,128 @@ Pertama, di soal ini menggunakan stack dengan menginisialisasi ``` Stack myStack
 
 # Garasi Mobil Saha 
 ## Verdict 
-![verdict garasi mobil saha](https://user-images.githubusercontent.com/81666422/113583265-a2a36000-9653-11eb-8ff1-5ef950fd90c2.jpeg)
+AC Perbaikan 
+
+## Bukti
+![bukti garasi saha](https://user-images.githubusercontent.com/81666422/121763308-18044300-cb65-11eb-9a1f-c1c29b71880d.png)
 
 ## Penjelasan Soal
 Di soal garasi mobil saha diminta untuk memastikan apakah garasi saha dapat menampung semua mobil dan mobil pertama apakah bisa keluar.
 
 ## Penjelasan Solusi
-Pada input pertama diminta untuk jumlah mobil dan kapasitas garasi, lalu untuk inputan kedua adalah jam masuk dan keluarnya mobil. Sesuai syarat mobil tidak bisa keluar dan masuk pada jam yang sama. Pertama membuat fungsi counter untuk menghitung jam keluar masuk mobil. Contoh mobil pertama masuk jam 3 dan keluar jam 8 maka yang tersimpan di counter adalah 3 4 5 6 7. Setelah data masuk dilanjutkan pada fungsi maixcounter, fungsi tersebut digunakan untuk menghitung data waktu yang masuk dengan kapasitas garasi. Mobil bisa masuk jika jam masuk mobil > jam masuk mobil sebelumnya, jam keluar mobil < jam keluar mobil sebelumnya atau jam masuk mobil < jam keluar mobil sebelumnya.
+```
+int main() {
+    
+    int testcase, jumlah, kapasitas;
+    scanf("%d\n", &testcase);
+    while (testcase--) {
+        scanf("%d %d", &jumlah, &kapasitas);
+        
+    int x[jumlah+10], y[jumlah+10]; 
+    int total = 0; 
+    bool bareng = 0; 
+        for (int i = 1; i <= jumlah; i++) {
+            scanf("%d %d", &x[i], &y[i]);
+            if (x[i] == y[i]) 
+            bareng = 1; 
+            total += y[i]-x[i]; 
+        }
+ 
+        SinglyList nums; 
+        slist_init(&nums);
+        for (int j = 1; j <= jumlah; j++) 
+        for (int i = x[j]; i < y[j]; i++) {
+            slist_pushBack(&nums, i);
+        } 
+        
+        if (isDobel(x, jumlah) || isDobel(y, jumlah) || Counter(&nums, total, kapasitas) > kapasitas || bareng) 
+            printf("Hmm harus renovasi garasi nich\n"); 
+        else 
+            printf("Hore gausah renov garasi\n");
+    }
+    puts("");
+    return 0;
+}
+```
+Pertama menginputkan testcase dengan ``` scanf("%d\n", &testcase); ```, lalu ``` scanf("%d %d", &jumlah, &kapasitas); ``` untuk menginputkan jumlah mobil dan kapasitas garasi. 
+Untuk menghitung waktu masuk dan keluar mobil menggunakan ``` int x[jumlah+10], y[jumlah+10]; ```. Lalu ``` int total = 0; ``` ```  total += y[i]-x[i];  ``` untuk menghitung waktu seluruh mobil, ``` bool bareng = 0; ``` ``` if (x[i] == y[i]) ``` untuk mengecek apakah waktu masuk dan keluar sama. ``` if (isDobel(x, jumlah) || isDobel(y, jumlah) || Counter(&nums, total, kapasitas) > kapasitas || bareng) ``` memasukkan semua kemungkinan, jika tidak bisa maka akan mengeluarkan dengan fungsi ```printf("Hmm harus renovasi garasi nich\n"); ``` dan sebaliknya ``` printf("Hore gausah renov garasi\n"); ```.
 
+## Visualisasi Solusi
+```
+input 
+1
+2 1
+1 5
+3 8
+```
+![solusi_garasi_mobil_saha](https://user-images.githubusercontent.com/81666422/121763484-b5ac4200-cb66-11eb-8ca1-8ab8c325e131.jpg)
+
+```
+output
+Hmm harus renovasi garasi nich
+```
+
+# Malur Rajin
+## Verdict
+AC Perbaikan
+
+## Bukti
+![bukti malur rajin](https://user-images.githubusercontent.com/81666422/121763492-d1174d00-cb66-11eb-8d2b-0f852ec235ec.png)
+
+## Penjelasan Soal
+Pada soal malur rajin diminta untuk memilih satu buku dari tumpukan dengan sisa soal paling sedikit. Untuk memilih buku itu, harus memisahkan semua buku yang ada di atasnya lalu meletakkan buku-buku tersebut ke lantai. Jika ada buku yang sama jumlah soalnya, maka akan memilih yang paling atas. Setelah dikerjakan, akan memilih buku lain dengan soal paling sedikit.
+
+## Penjelasan Solusi
+```
+int main(){
+    Stack myStack;
+    myStack.init();
+    
+    int testcase, N;
+    char buku [20];
+    cin>>testcase;
+		for(int i=1; i<=testcase; i++){
+        	cin>>N;
+        	if(N!=-1){
+            	cin>>buku;
+            if(N==0){
+                continue;
+            }
+            myStack.push(N, buku);
+        }
+	else {
+            myStack.tumpuk();
+        }
+    }
+    return 0;
+}
+```
+Pertama, di soal ini menggunakan stack dengan menginisialisasi ``` Stack myStack;  ```. Lalu ``` myStack.init (); ```. Lalu menginputkan testcase dengan ```cin>>testcase;```, dilanjutkan dengan memasukkan banyak jumlah soal yang tersisa pada sebuah buku dengan ``` cin>>N; ``` dan untuk menginputkan nama buku dan juga -1  artinya malur akan mengerjakan sebuah soal dengan inisiasi dibawah ini
+```
+if(N!=-1){
+   cin>>buku;
+        if(N==0){
+           continue;
+}
+```
+Lalu untuk menambahkan soal yang tersisa pada buku selanjutnya menggunakan push dengan ```  myStack.push(N, buku); ``` dan hasil akhir akan diinisiasi dengan ``` myStack.tumpuk(); ``` 
+
+## Visualisasi Solusi
+```
+input
+6
+9 enggres
+6 matematika
+8 geo
+-1
+3 fisika
+-1
+```
+![solusi_malur_rajin](https://user-images.githubusercontent.com/81666422/121763709-6109c680-cb68-11eb-851b-9401fc5962c9.jpg)
+```
+output
+1 matematika
+0 fisika
+```
 
 
